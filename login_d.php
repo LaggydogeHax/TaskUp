@@ -5,8 +5,6 @@ require 'database.php';
 $nombreUsuario = $_POST['alias'];
 $contraseña = $_POST['contraseña'];
 
-$_SESSION['nombre_usuario'] = $nombreUsuario;
-
 $stmt = $conexion->prepare("SELECT id_usuario, contraseña FROM usuario WHERE alias = ?");//Esta es la consullta SQL que se envia a la base de datos
 $stmt->bind_param("s", $nombreUsuario);//El metodo bind_param() sirve para enlazar parametros y la "s" especifica que tipo de parametros vamos a enlazar en este caso indica que es una "string" esta indicando a mysql que el valor que vamos a enlazar sera una "Cadena de texto" y sera la variable $nombreUsuario POR EJEMPLO: Si el nombre de usuario es "Juanito" entonces el signo de interrogacion (?) seria igual a "Juanito"
 $stmt->execute();//El metodo execute() se encarga de ejecutar la consulta SQL que estamos especificando en las lineas de arriba, este metodo devuelve un balor booleano TRUE si la ejecucion fue exitosa y FALSE si no lo fue
@@ -24,6 +22,7 @@ if ($stmt->num_rows === 1){
         header("Location: home.php");
         exit;
     }else{
+        session_destroy();
         header('Location: index.php?error=contInv');
         /*
         echo "Contraseña incorrecta.";
@@ -33,6 +32,7 @@ if ($stmt->num_rows === 1){
     }
 }else{
     /* echo "Usuario no encontrado."; */
+    session_destroy();
     header('Location: index.php?error=noUser');
 }
 ?>

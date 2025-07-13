@@ -1,14 +1,17 @@
 :root {
     /* Nueva Paleta de Colores Profesional (5 colores) */
-    --color-bg-light: #e6e6e6;          /* Fondo principal claro, texto claro en fondos oscuros */
+    --color-bg-light: #ececec;          /* Fondo principal claro, texto claro en fondos oscuros */
     --color-bg-dark: #011627;           /* Fondo secundario oscuro, texto oscuro en fondos claros */
-    --color-primary-accent: #2ec4b6;    /* Acento principal (éxito, botones primarios, títulos de ítems) */
-    --color-secondary-accent: #ff9f1c;  /* Acento secundario (resalte, títulos de página/sección, en proceso) */
+    --color-bg-darkblue: #0215be;
+    --color-primary-accent: #2596be;    /* Acento principal (éxito, botones primarios, títulos de ítems) */
+    --color-primary-accent2: #ebf9ff;
+    --color-yello: #faea3d;
+    --color-secondary-accent: #fdeb38;  /* Acento secundario (resalte, títulos de página/sección, en proceso) */
     --color-danger: #e71d36;            /* Color de peligro (alertas, eliminar) */
 }
 
 /* Fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');*/
 
 body {
     margin: 0;
@@ -70,7 +73,7 @@ body {
 }
 
 .encabezado-li:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .encabezado-a {
@@ -78,12 +81,12 @@ body {
     font-weight: 600;
     color: var(--color-bg-light); /* Texto claro en el encabezado oscuro */
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .encabezado-a:hover {
-    color: var(--color-primary-accent); /* Verde azulado al pasar el ratón */
-    text-shadow: 0 0 8px var(--color-primary-accent);
+    color: var(--color-yello); /* Verde azulado al pasar el ratón */
+    /*text-shadow: 0 0 8px var(--color-yello);*/
 }
 
 .encabezado-button {
@@ -139,6 +142,10 @@ body {
 
 .index-h1 {
     font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--color-primary-accent), var(--color-primary-accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: var(--color-primary-accent); /* Texto oscuro para el título */
     border-bottom: 2px solid var(--color-primary-accent); /* Verde azulado para el borde del título */
     padding-bottom: 15px;
@@ -210,7 +217,8 @@ body {
 }
 
 .index-input-submit:hover {
-    background-color: #26A69A; /* Tono más oscuro de verde azulado al pasar el ratón */
+    background-color: white; /* Tono más oscuro de verde azulado al pasar el ratón */
+    color:black;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
@@ -229,14 +237,14 @@ body {
 
 .index-a {
     text-decoration: none;
-    color: var(--color-secondary-accent); /* Naranja para el enlace */
+    color: var(--color-primary-accent); /* Naranja para el enlace */
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .index-a:hover {
-    text-shadow: 0 0 8px var(--color-secondary-accent);
-    color: #FFB300; /* Tono más claro de naranja al pasar el ratón */
+    text-shadow: 0 0 8px var(--color-primary-accent);
+    color: darkblue; /* Tono más claro de naranja al pasar el ratón */
 }
 
 /*----------------------------------------------------REGISTRO.PHP----------------------------------------------------*/
@@ -276,8 +284,11 @@ body {
 
 .registro-div-formulario h1 {
     font-size: 2.2rem;
+    background: linear-gradient(90deg, var(--color-primary-accent), var(--color-primary-accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: var(--color-primary-accent); /* Texto oscuro para el título */
-    border-bottom: 2px solid var(--color-primary-accent); /* Verde azulado para el borde del título */
     padding-bottom: 15px;
     margin-bottom: 0px;
 }
@@ -371,7 +382,8 @@ body {
 }
 
 .registro-div-formulario input[type="submit"]:hover {
-    background-color: #26A69A; /* Tono más oscuro de verde azulado al pasar el ratón */
+    background-color: white; /* Tono más oscuro de verde azulado al pasar el ratón */
+    color: black;
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
@@ -392,14 +404,101 @@ body {
 
 .registro-p .registro-a {
     text-decoration: none;
-    color: var(--color-secondary-accent); /* Naranja para el enlace */
+    color: var(--color-primary-accent); /* Naranja para el enlace */
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .registro-p .registro-a:hover {
-    text-shadow: 0 0 8px var(--color-secondary-accent);
-    color: #FFB300; /* Tono más claro de naranja al pasar el ratón */
+    text-shadow: 0 0 8px var(--color-primary-accent);
+    color: darkblue; /* Tono más claro de naranja al pasar el ratón */
 }
 
 /*----------------------------------------------------HOME.PHP (y otras páginas con contenido principal)----------------------------------------------------*/
+
+.body-home{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Fuente profesional */
+    background: linear-gradient(180deg, var(--color-primary-accent),var(--color-bg-darkblue)) ; /* Fondo principal claro */
+    min-height: 100vh;
+    color: var(--color-bg-dark); /* Texto oscuro por defecto en fondos claros */
+    line-height: 1.6;
+}
+
+.dashboard-container{
+    margin:3%;
+    margin-top: 10%;
+    padding: 3%;
+    background-color: white;
+    border-radius: 35px;
+    display:flexbox;
+}
+
+.act-titulo{
+    margin-bottom: -3px;
+}
+
+.act-desc{
+    color:rgb(58, 58, 58);
+    font-style: italic;
+}
+
+.act-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 15px; /* Space between the grid items (divs) */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.act-h3{
+    margin-bottom: -3px;
+}
+
+.act-h3-li{
+    margin-top: -5px;
+    margin-bottom: -3px;
+}
+
+.act-item-basico,
+.act-item-intermedio,
+.act-item-importante {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    display: flex; /* Use flexbox for content inside each div */
+    flex-direction: column; /* Stack title and list vertically */
+}
+
+.act-item-basico{
+    background-color: #48cc8a;
+}
+.act-item-intermedio{
+    background-color: #e99260;
+}
+.act-item-importante{
+    background-color: #df6c6c;
+}
+
+.dashboard-list{
+    padding-inline-start: 0px;
+    list-style-position: inside;
+    -webkit-padding-start: 0;
+}
+
+.dashboard-list-item{
+    list-style-type:none;
+    list-style-position: inside;
+    list-style: none;
+    margin-left: 0px;
+    background-color: hsl(0, 0%, 100%,50%);
+    border: 1px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}

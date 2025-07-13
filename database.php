@@ -2,7 +2,7 @@
 $host = "localhost";
 $usuario = "root"; // tu usuario de MySQL
 $contraseña = "";     // tu contraseña de MySQL
-$dataBase = "base_gestion"; //nombre de la base de datos
+$dataBase = "gtc_gamificacion"; //nombre de la base de datos
 
 $conexion = new mysqli($host, $usuario, $contraseña, $dataBase);
 
