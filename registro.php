@@ -30,7 +30,7 @@
         ?>
     </p>
     <div class="registro-div-formulario">
-        <h1 class="registro-h1">Registrarse</h1>
+        <h1 class="index-h1">Registrarse</h1>
         <form action="crear_usuario_d.php" method="post">
             <div class="registro-div-nombre">
                 <input type="text" name="nombre" class="registro-input-nombre" required>

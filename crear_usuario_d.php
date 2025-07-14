@@ -28,7 +28,6 @@ if($result==$alias){
     $conexion->close();
 }
 
-
 //Convertimos la contraseña del usuario en una contraseña hash ejemplo: Pepe = (#/$&!)#=(!"ROJQIOWJHE()#"Y)!12039821083e2jioqw esto es gracias a la funcion password_hash()
 $contraseña_hash = password_hash($contraseña, PASSWORD_DEFAULT);
 

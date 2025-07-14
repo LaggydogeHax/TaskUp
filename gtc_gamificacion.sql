@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 12-07-2025 a las 21:44:49
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Jul 14, 2025 at 01:18 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `base_gestion`
+-- Database: `gtc_gamificacion`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividad`
+-- Table structure for table `actividad`
 --
 
 CREATE TABLE `actividad` (
@@ -33,23 +33,34 @@ CREATE TABLE `actividad` (
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `titulo` varchar(40) NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` varchar(500) DEFAULT NULL,
   `id_estado_actividad` int(9) NOT NULL,
   `id_lista_actividades` int(9) NOT NULL,
   `id_grado_actividad` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `actividad`
+-- Dumping data for table `actividad`
 --
 
 INSERT INTO `actividad` (`id_actividad`, `id_usuario`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `id_estado_actividad`, `id_lista_actividades`, `id_grado_actividad`) VALUES
-(15, 2, '2025-07-02', '2025-07-22', 'comprar harina Pan', '0', 1, 1, 3);
+(15, 2, '2025-07-02', '2025-07-22', 'comprar harina Pan', '0', 1, 1, 3),
+(17, 4, '2025-07-23', '2025-07-31', 'Cumpleaños', 'cumpleaños de alguien pero se me olvido de quein', 2, 1, 1),
+(18, 4, '2025-07-23', '2025-07-24', 'Veterinario', 'hay q llevar al chiguire al veterinario', 3, 1, 3),
+(19, 4, '2025-07-29', '2025-07-30', 'Comprar Arina PAN', 'ya no tengo arina pan, hay que comprar más', 2, 1, 3),
+(20, 4, '2025-07-21', '2025-07-31', 'Evento Hatsune Miku Live', 'omg es hatsune miku!!!', 3, 1, 1),
+(21, 4, '2025-07-17', '2025-07-17', 'Reparar la impresora', 'EPSON L355', 2, 1, 2),
+(22, 4, '2025-07-17', '2025-07-17', 'Entregar el proyecto a Moya', 'se nota que javascript se creó en 10 dias', 3, 1, 3),
+(23, 4, '2025-07-19', '2025-07-19', 'Comprar comida de gato', 'estos gatos comen mucho', 2, 1, 2),
+(24, 4, '2025-07-14', '2025-07-14', 'Practicar Inglés en Duolingo', 'Hay que mantener la racha', 2, 1, 1),
+(25, 4, '2025-07-23', '2025-07-23', 'Pagar membresia Spotify Premium', 'Ya no quiero ver anuncios molestos', 2, 1, 1),
+(26, 4, '2025-07-15', '2025-07-15', 'Tarea de Investigación de Operaciones', 'opordios', 2, 1, 2),
+(27, 4, '2025-07-14', '2025-07-14', 'Avance del proyecto de PHP', 'ay chamo', 2, 1, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `balance`
+-- Table structure for table `balance`
 --
 
 CREATE TABLE `balance` (
@@ -59,16 +70,17 @@ CREATE TABLE `balance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `balance`
+-- Dumping data for table `balance`
 --
 
 INSERT INTO `balance` (`id_balance`, `total_moneda`, `id_usuario`) VALUES
-(1, 25, 2);
+(1, 25, 2),
+(2, 0, 4);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado_actividad`
+-- Table structure for table `estado_actividad`
 --
 
 CREATE TABLE `estado_actividad` (
@@ -77,7 +89,7 @@ CREATE TABLE `estado_actividad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `estado_actividad`
+-- Dumping data for table `estado_actividad`
 --
 
 INSERT INTO `estado_actividad` (`id_estado_actividad`, `estado`) VALUES
@@ -88,7 +100,7 @@ INSERT INTO `estado_actividad` (`id_estado_actividad`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado_logro`
+-- Table structure for table `estado_logro`
 --
 
 CREATE TABLE `estado_logro` (
@@ -97,7 +109,7 @@ CREATE TABLE `estado_logro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `estado_logro`
+-- Dumping data for table `estado_logro`
 --
 
 INSERT INTO `estado_logro` (`id_estado_logro`, `estado`) VALUES
@@ -107,7 +119,7 @@ INSERT INTO `estado_logro` (`id_estado_logro`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grado_actividad`
+-- Table structure for table `grado_actividad`
 --
 
 CREATE TABLE `grado_actividad` (
@@ -117,7 +129,7 @@ CREATE TABLE `grado_actividad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `grado_actividad`
+-- Dumping data for table `grado_actividad`
 --
 
 INSERT INTO `grado_actividad` (`id_grado_actividad`, `grado`, `recompensa`) VALUES
@@ -128,7 +140,7 @@ INSERT INTO `grado_actividad` (`id_grado_actividad`, `grado`, `recompensa`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `inventario`
+-- Table structure for table `inventario`
 --
 
 CREATE TABLE `inventario` (
@@ -140,7 +152,7 @@ CREATE TABLE `inventario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `inventario`
+-- Dumping data for table `inventario`
 --
 
 INSERT INTO `inventario` (`id_inventario`, `id_usuario`, `id_item`, `cantidad`, `fecha_adquisicion`) VALUES
@@ -149,7 +161,7 @@ INSERT INTO `inventario` (`id_inventario`, `id_usuario`, `id_item`, `cantidad`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `item`
+-- Table structure for table `item`
 --
 
 CREATE TABLE `item` (
@@ -161,7 +173,7 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `item`
+-- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`id_item`, `nombre`, `descripcion`, `id_tipo_item`, `valor`) VALUES
@@ -170,7 +182,7 @@ INSERT INTO `item` (`id_item`, `nombre`, `descripcion`, `id_tipo_item`, `valor`)
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `lista_actividades`
+-- Table structure for table `lista_actividades`
 --
 
 CREATE TABLE `lista_actividades` (
@@ -179,7 +191,7 @@ CREATE TABLE `lista_actividades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `lista_actividades`
+-- Dumping data for table `lista_actividades`
 --
 
 INSERT INTO `lista_actividades` (`id_lista_actividades`, `nombre`) VALUES
@@ -188,7 +200,7 @@ INSERT INTO `lista_actividades` (`id_lista_actividades`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `lista_logros`
+-- Table structure for table `lista_logros`
 --
 
 CREATE TABLE `lista_logros` (
@@ -199,7 +211,7 @@ CREATE TABLE `lista_logros` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `logro`
+-- Table structure for table `logro`
 --
 
 CREATE TABLE `logro` (
@@ -216,7 +228,7 @@ CREATE TABLE `logro` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_item`
+-- Table structure for table `tipo_item`
 --
 
 CREATE TABLE `tipo_item` (
@@ -225,7 +237,7 @@ CREATE TABLE `tipo_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tipo_item`
+-- Dumping data for table `tipo_item`
 --
 
 INSERT INTO `tipo_item` (`id_tipo_item`, `tipo_nombre`) VALUES
@@ -235,7 +247,7 @@ INSERT INTO `tipo_item` (`id_tipo_item`, `tipo_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -249,19 +261,20 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `alias`, `contraseña`, `fecha_registro`, `id_inventario`) VALUES
-(2, 'Armando', 'Armas', 'admin', '$2y$10$DQQIUcS8gn1zkCejrdBIcuT34MLkbmSenC3pJPWvvXupmouO.Odu6', '2025-07-11', 0),
-(3, 'Marleny', 'Andrade', 'madre', '$2y$10$562d4Kq3uTGTncJfK.UlkOBEcb6C7gbmRBpRKN1yCLMyOeKDvVbVW', '2025-07-11', 0);
+(2, 'Admin', 'Rotundo', 'admin', '$2y$10$DQQIUcS8gn1zkCejrdBIcuT34MLkbmSenC3pJPWvvXupmouO.Odu6', '2025-07-11', 0),
+(3, 'Marleny', 'Andrade', 'madre', '$2y$10$562d4Kq3uTGTncJfK.UlkOBEcb6C7gbmRBpRKN1yCLMyOeKDvVbVW', '2025-07-11', 0),
+(4, 'Picaflor', 'Inocentemiel', 'juan', '$2y$10$a0u/XDP8PsglUBiTkhe4MOGRBx2fI0PW06VJw224tYgLbfsSDKSVC', '2025-07-13', 0);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `actividad`
+-- Indexes for table `actividad`
 --
 ALTER TABLE `actividad`
   ADD PRIMARY KEY (`id_actividad`),
@@ -271,32 +284,32 @@ ALTER TABLE `actividad`
   ADD KEY `id_grado_actividad` (`id_grado_actividad`);
 
 --
--- Indices de la tabla `balance`
+-- Indexes for table `balance`
 --
 ALTER TABLE `balance`
   ADD PRIMARY KEY (`id_balance`),
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `estado_actividad`
+-- Indexes for table `estado_actividad`
 --
 ALTER TABLE `estado_actividad`
   ADD PRIMARY KEY (`id_estado_actividad`);
 
 --
--- Indices de la tabla `estado_logro`
+-- Indexes for table `estado_logro`
 --
 ALTER TABLE `estado_logro`
   ADD PRIMARY KEY (`id_estado_logro`);
 
 --
--- Indices de la tabla `grado_actividad`
+-- Indexes for table `grado_actividad`
 --
 ALTER TABLE `grado_actividad`
   ADD PRIMARY KEY (`id_grado_actividad`);
 
 --
--- Indices de la tabla `inventario`
+-- Indexes for table `inventario`
 --
 ALTER TABLE `inventario`
   ADD PRIMARY KEY (`id_inventario`),
@@ -304,20 +317,20 @@ ALTER TABLE `inventario`
   ADD KEY `id_item` (`id_item`);
 
 --
--- Indices de la tabla `item`
+-- Indexes for table `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id_item`),
   ADD KEY `id_tipo_item` (`id_tipo_item`);
 
 --
--- Indices de la tabla `lista_actividades`
+-- Indexes for table `lista_actividades`
 --
 ALTER TABLE `lista_actividades`
   ADD PRIMARY KEY (`id_lista_actividades`);
 
 --
--- Indices de la tabla `logro`
+-- Indexes for table `logro`
 --
 ALTER TABLE `logro`
   ADD PRIMARY KEY (`id_logro`),
@@ -327,93 +340,93 @@ ALTER TABLE `logro`
   ADD KEY `id_item` (`id_item`);
 
 --
--- Indices de la tabla `tipo_item`
+-- Indexes for table `tipo_item`
 --
 ALTER TABLE `tipo_item`
   ADD PRIMARY KEY (`id_tipo_item`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividad`
+-- AUTO_INCREMENT for table `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT de la tabla `balance`
+-- AUTO_INCREMENT for table `balance`
 --
 ALTER TABLE `balance`
-  MODIFY `id_balance` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_balance` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `estado_actividad`
+-- AUTO_INCREMENT for table `estado_actividad`
 --
 ALTER TABLE `estado_actividad`
   MODIFY `id_estado_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `estado_logro`
+-- AUTO_INCREMENT for table `estado_logro`
 --
 ALTER TABLE `estado_logro`
   MODIFY `id_estado_logro` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `grado_actividad`
+-- AUTO_INCREMENT for table `grado_actividad`
 --
 ALTER TABLE `grado_actividad`
   MODIFY `id_grado_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `inventario`
+-- AUTO_INCREMENT for table `inventario`
 --
 ALTER TABLE `inventario`
   MODIFY `id_inventario` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `item`
+-- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
   MODIFY `id_item` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `lista_actividades`
+-- AUTO_INCREMENT for table `lista_actividades`
 --
 ALTER TABLE `lista_actividades`
   MODIFY `id_lista_actividades` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `logro`
+-- AUTO_INCREMENT for table `logro`
 --
 ALTER TABLE `logro`
   MODIFY `id_logro` int(9) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_item`
+-- AUTO_INCREMENT for table `tipo_item`
 --
 ALTER TABLE `tipo_item`
   MODIFY `id_tipo_item` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `actividad`
+-- Constraints for table `actividad`
 --
 ALTER TABLE `actividad`
   ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
@@ -422,26 +435,26 @@ ALTER TABLE `actividad`
   ADD CONSTRAINT `actividad_ibfk_4` FOREIGN KEY (`id_grado_actividad`) REFERENCES `grado_actividad` (`id_grado_actividad`);
 
 --
--- Filtros para la tabla `balance`
+-- Constraints for table `balance`
 --
 ALTER TABLE `balance`
   ADD CONSTRAINT `balance_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
--- Filtros para la tabla `inventario`
+-- Constraints for table `inventario`
 --
 ALTER TABLE `inventario`
   ADD CONSTRAINT `inventario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
   ADD CONSTRAINT `inventario_ibfk_2` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`);
 
 --
--- Filtros para la tabla `item`
+-- Constraints for table `item`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`id_tipo_item`) REFERENCES `tipo_item` (`id_tipo_item`);
 
 --
--- Filtros para la tabla `logro`
+-- Constraints for table `logro`
 --
 ALTER TABLE `logro`
   ADD CONSTRAINT `logro_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
