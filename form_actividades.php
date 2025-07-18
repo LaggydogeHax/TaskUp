@@ -49,7 +49,6 @@ require 'database.php';
                 <label class="registro-label">Fecha</label>
             </div>
 
-
             <input type="submit" value="Añadir actividad">
         </form>
     </div>

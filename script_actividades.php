@@ -63,16 +63,16 @@ function printListaActividades($act){
         $fcha=date("d M Y", strtotime($actividad['fecha_fin']));
         $fchaHoy=date("d M Y");
 
-        if($fcha == $fchaHoy){
-            $fcha='<a class="a-rojo">'.$fcha.'</a>'; 
+        if($fcha <= $fchaHoy and ($actividad['estado']!="Completada")){
+            $fcha='<a class="a-rojo">'.$fcha.'</a>';
         }
 
-        echo '<li class="dashboard-list-item">';
+        echo '<li class="dashboard-list-item"> <a class="a-ocultar" href="actividad_single.php?idActividad='.$actividad['id_actividad'].'">';
             echo '<h3 class="act-titulo"> '.$actividad['titulo'].' </h3><hr class="act-hr-li">';
             echo '<p class="act-desc">'.$actividad['descripcion'].' </p>';
             echo '<p><b>Fecha límite:</b> '.$fcha.' </p>';
             echo '<p><b>Estado:</b> <span class="'.$actividad['estado'].'">'.$actividad['estado'].'</span></p>';
-        echo '</li>';
+        echo '</li></a>';
     }
 }
 ?>

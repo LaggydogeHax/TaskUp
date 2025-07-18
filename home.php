@@ -40,7 +40,7 @@ $actividadesImportantes = [];
 $actividadesIntermedio = [];
 
 $ac=1; //actividades basicas
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 1 ORDER BY fecha_fin ASC LIMIT 3");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 1 and fecha_fin >= date(now()) and E.estado!='Completada' ORDER BY fecha_fin ASC LIMIT 3");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -50,7 +50,7 @@ while ($row = $result_actividades->fetch_assoc()) {
 }
 
 $ac=2;//actividades internmedias
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 2 ORDER BY fecha_fin ASC LIMIT 3");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 2 and fecha_fin >= date(now()) and E.estado!='Completada' ORDER BY fecha_fin ASC LIMIT 3");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -60,7 +60,7 @@ while ($row = $result_actividades->fetch_assoc()) {
 }
 
 $ac=3; //actividades importantes
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 3 ORDER BY fecha_fin ASC LIMIT 3");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 3 and fecha_fin >= date(now()) and E.estado!='Completada' ORDER BY fecha_fin ASC LIMIT 3");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -105,14 +105,14 @@ $conexion->close();
         <div class="dashboard-section balance-section">
             <h2 class="dashboard-h2">Tu Balance Actual:</h2>
             <p class="dashboard-balance-amount">Monedas: <span class="balance-value"><?php echo htmlspecialchars($balance_total); ?></span></p>
-            <button class="dashboard-button" onclick="location.href='shop.php'">Tienda de Recompensas</button>
+            <button class="dashboard-button" onclick="location.href='shop.php'">Gachapon!!!!</button>
         </div>
 
         <h2 class="dashboard-h2">Tus Próximas Actividades:</h2>
+        <button class="dashboard-button" onclick="location.href='actividades.php'">Ver todas las Actividades</button>
         <?php  
             include 'script_actividades.php';
         ?>
-        <button class="dashboard-button" onclick="location.href='actividades.php'">Ver todas las Actividades</button>
 
         <div class="dashboard-section logros-section">
             <h2 class="dashboard-h2">Tus Logros Recientes</h2>

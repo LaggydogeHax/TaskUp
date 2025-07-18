@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2025 at 01:18 PM
+-- Generation Time: Jul 18, 2025 at 02:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,18 +44,19 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`id_actividad`, `id_usuario`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `id_estado_actividad`, `id_lista_actividades`, `id_grado_actividad`) VALUES
-(15, 2, '2025-07-02', '2025-07-22', 'comprar harina Pan', '0', 1, 1, 3),
+(15, 2, '2025-07-02', '2025-07-22', 'comprar harina Pan', '0', 2, 1, 3),
 (17, 4, '2025-07-23', '2025-07-31', 'Cumpleaños', 'cumpleaños de alguien pero se me olvido de quein', 2, 1, 1),
-(18, 4, '2025-07-23', '2025-07-24', 'Veterinario', 'hay q llevar al chiguire al veterinario', 3, 1, 3),
+(18, 4, '2025-07-23', '2025-07-24', 'Veterinario', 'hay q llevar al chiguire al veterinario', 2, 1, 3),
 (19, 4, '2025-07-29', '2025-07-30', 'Comprar Arina PAN', 'ya no tengo arina pan, hay que comprar más', 2, 1, 3),
-(20, 4, '2025-07-21', '2025-07-31', 'Evento Hatsune Miku Live', 'omg es hatsune miku!!!', 3, 1, 1),
+(20, 4, '2025-07-21', '2025-07-31', 'Evento Hatsune Miku Live', 'omg es hatsune miku!!!', 2, 1, 1),
 (21, 4, '2025-07-17', '2025-07-17', 'Reparar la impresora', 'EPSON L355', 2, 1, 2),
-(22, 4, '2025-07-17', '2025-07-17', 'Entregar el proyecto a Moya', 'se nota que javascript se creó en 10 dias', 3, 1, 3),
+(22, 4, '2025-07-17', '2025-07-17', 'Entregar el proyecto a Moya', 'se nota que javascript se creó en 10 dias', 2, 1, 3),
 (23, 4, '2025-07-19', '2025-07-19', 'Comprar comida de gato', 'estos gatos comen mucho', 2, 1, 2),
 (24, 4, '2025-07-14', '2025-07-14', 'Practicar Inglés en Duolingo', 'Hay que mantener la racha', 2, 1, 1),
-(25, 4, '2025-07-23', '2025-07-23', 'Pagar membresia Spotify Premium', 'Ya no quiero ver anuncios molestos', 2, 1, 1),
-(26, 4, '2025-07-15', '2025-07-15', 'Tarea de Investigación de Operaciones', 'opordios', 2, 1, 2),
-(27, 4, '2025-07-14', '2025-07-14', 'Avance del proyecto de PHP', 'ay chamo', 2, 1, 3);
+(25, 4, '2025-07-23', '2025-07-23', 'Pagar membresia Spotify Premium', 'Ya no quiero ver anuncios molestos', 1, 1, 1),
+(27, 4, '2025-07-14', '2025-07-14', 'Avance del proyecto de PHP', 'ay chamo', 1, 1, 3),
+(28, 4, '2025-07-18', '2025-07-18', 'Sacar la basura', 'lleva rato ahi', 2, 1, 2),
+(29, 4, '2025-07-31', '2025-07-31', 'Terminar Servicio comunitario', '120 horas cumplidas', 2, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,7 @@ CREATE TABLE `balance` (
 
 INSERT INTO `balance` (`id_balance`, `total_moneda`, `id_usuario`) VALUES
 (1, 25, 2),
-(2, 0, 4);
+(2, 340, 4);
 
 -- --------------------------------------------------------
 
@@ -119,6 +120,18 @@ INSERT INTO `estado_logro` (`id_estado_logro`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fotos_perfil`
+--
+
+CREATE TABLE `fotos_perfil` (
+  `id_fotoperfil` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `foto64` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `grado_actividad`
 --
 
@@ -133,8 +146,8 @@ CREATE TABLE `grado_actividad` (
 --
 
 INSERT INTO `grado_actividad` (`id_grado_actividad`, `grado`, `recompensa`) VALUES
-(1, 'Basico', 20),
-(2, 'Intermedio', 45),
+(1, 'Basico', 32),
+(2, 'Intermedio', 54),
 (3, 'Importante', 80);
 
 -- --------------------------------------------------------
@@ -303,6 +316,13 @@ ALTER TABLE `estado_logro`
   ADD PRIMARY KEY (`id_estado_logro`);
 
 --
+-- Indexes for table `fotos_perfil`
+--
+ALTER TABLE `fotos_perfil`
+  ADD PRIMARY KEY (`id_fotoperfil`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indexes for table `grado_actividad`
 --
 ALTER TABLE `grado_actividad`
@@ -359,7 +379,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_actividad` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `balance`
@@ -378,6 +398,12 @@ ALTER TABLE `estado_actividad`
 --
 ALTER TABLE `estado_logro`
   MODIFY `id_estado_logro` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `fotos_perfil`
+--
+ALTER TABLE `fotos_perfil`
+  MODIFY `id_fotoperfil` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `grado_actividad`
@@ -439,6 +465,12 @@ ALTER TABLE `actividad`
 --
 ALTER TABLE `balance`
   ADD CONSTRAINT `balance_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Constraints for table `fotos_perfil`
+--
+ALTER TABLE `fotos_perfil`
+  ADD CONSTRAINT `fotos_perfil_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Constraints for table `inventario`

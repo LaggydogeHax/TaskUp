@@ -24,7 +24,7 @@ $actividadesImportantes = [];
 $actividadesIntermedio = [];
 
 $ac=1; //actividades basicas
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 1 ORDER BY fecha_fin ASC");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 1 ORDER BY fecha_fin ASC");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -34,7 +34,7 @@ while ($row = $result_actividades->fetch_assoc()) {
 }
 
 $ac=2;//actividades internmedias
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 2 ORDER BY fecha_fin ASC");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 2 ORDER BY fecha_fin ASC");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -44,7 +44,7 @@ while ($row = $result_actividades->fetch_assoc()) {
 }
 
 $ac=3; //actividades importantes
-$stmt_actividades = $conexion->prepare("SELECT titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 3 ORDER BY fecha_fin ASC");
+$stmt_actividades = $conexion->prepare("SELECT a.id_actividad, titulo, descripcion, fecha_fin, E.estado FROM actividad A JOIN estado_actividad E ON A.id_estado_actividad = E.id_estado_actividad WHERE id_usuario = ? and A.id_grado_actividad = 3 ORDER BY fecha_fin ASC");
 $stmt_actividades->bind_param("i", $id_usuario);
 $stmt_actividades->execute();
 $result_actividades = $stmt_actividades->get_result();
@@ -52,6 +52,13 @@ $result_actividades = $stmt_actividades->get_result();
 while ($row = $result_actividades->fetch_assoc()) {
     $actividadesImportantes[] = $row;
 }
+
+$totalActividades = $conexion->query("SELECT count(id_actividad) as ac from actividad where actividad.id_usuario like $id_usuario;");
+$totalActividades = $totalActividades->fetch_column();
+$actividadesCompletas = $conexion->query("SELECT count(id_actividad) as ac from actividad where actividad.id_usuario like $id_usuario and actividad.id_estado_actividad like 1;");
+$actividadesCompletas = $actividadesCompletas->fetch_column();
+$actividadesIncompletas = $conexion->query("SELECT count(id_actividad) as ac from actividad where actividad.id_usuario like $id_usuario and actividad.id_estado_actividad != 1;");
+$actividadesIncompletas = $actividadesIncompletas->fetch_column();
 
 $stmt_actividades->close();
 
@@ -73,19 +80,19 @@ $conexion->close();
     <div class="dashboard-container">
         <h2 class="dashboard-h2">Todas Tus Actividades:</h2>
         <div class="act-ividades">
-            <p>Actividades completadas: 0</p>
-            <p>Actividades incompletas: 0</p>
-            <p>Total de actividades: 0</p>
+            <p>Actividades completadas: <?= htmlspecialchars($actividadesCompletas)?></p>
+            <p>Actividades incompletas: <?= htmlspecialchars($actividadesIncompletas)?></p>
+            <p>Total de actividades: <?= htmlspecialchars($totalActividades)?></p>
         </div>
         <hr>
         <br>
 
+        <button class="dashboard-button" onclick="location.href='home.php'">Volver</button>
         <button class="dashboard-button" onclick="location.href='form_actividades.php'">Añadir actividad a la lista</button>
-        <button class="dashboard-button" onclick="location.href='form_actividades.php'">Gestionar actividades</button>
+        
         <?php 
             include 'script_actividades.php';
         ?>
-        <button class="dashboard-button" onclick="location.href='home.php'">Volver</button>
     </div>
 </body>
 </html>
